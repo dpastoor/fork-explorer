@@ -49,10 +49,16 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
+    "axios": "^0.7.0",
     "classnames": "^2.2.1",
+    "github-api": "^0.10.7",
+    "karma": "^0.13.15",
     "material-ui": "^0.13.4",
+    "phantomjs": "^1.9.19",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-tap-event-plugin": "^0.2.1"
+    "react-tap-event-plugin": "^0.2.1",
+    "request": "^2.67.0",
+    "superagent": "^1.5.0"
   }
 }
