@@ -5,3 +5,4 @@ dist
 .idea/
 src/components/*-compiled.*
 src/*-compiled.*
+*-compiled.*
