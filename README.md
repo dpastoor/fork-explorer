@@ -1,5 +1,4 @@
-n-queens
-======
+Fork Explorer
+=========
 
-
-refactored n-queens implementation with chess board based to visualize the various solver algorithms
+Explorering github forks for solutions to all life's mysteries :-)
