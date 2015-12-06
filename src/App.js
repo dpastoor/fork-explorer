@@ -6,7 +6,6 @@ export class App extends Component {
         super(props);
     }
   render() {
-
     return (
        <div>
            <h1> Fork Explorer</h1>
