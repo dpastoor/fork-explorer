@@ -1,8 +1,8 @@
 
 import React from 'react';
-
-import { render } from 'react-dom'
-import xhr from 'xhr'
+import { render } from 'react-dom';
+import xhr from 'xhr';
+import {RaisedButton} from 'material-ui';
 export default class Repos extends React.Component {
 
     _authenticate() {
@@ -11,7 +11,7 @@ export default class Repos extends React.Component {
             url: 'https://fork-explorer-lh.herokuapp.com/authenticate/' + code,
             json: true
         }, (err, req, body) => {
-            console.log('body');
+            console.log('re-authentication successful');
             window.localStorage.token = body.token;
         });
     }
@@ -20,11 +20,28 @@ export default class Repos extends React.Component {
             this._authenticate()
         }
     }
+
+    _fetchUserData(params) {
+        xhr({
+            url: 'https://api.github.com/user',
+            json: true,
+            headers: {
+               Authorization: 'token ' + window.localStorage.token
+            }
+        }, (err, req, body) => {
+            console.log('data fetching successful');
+            console.log('req')
+            console.log(req)
+            console.log('body')
+            console.log(body)
+        });
+    }
     render() {
 
         return (
             <div>
                 <h1> Welcome! </h1>
+                <RaisedButton label="fetch user data" onClick={this._fetchUserData}/>
             </div>
         )
     }
