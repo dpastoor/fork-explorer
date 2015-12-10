@@ -4,6 +4,7 @@ import { createHistory, useBasename } from 'history'
 import { Router, Route, Link } from 'react-router'
 import Products from './components/Products'
 import Login from './components/Login'
+import Repos from './components/Repos'
 import App from './App'
 const history = useBasename(createHistory)({
     basename: '/'
@@ -26,5 +27,6 @@ render((
             <Route path={"/products"} component={Products} />
             <Route path={"/orders"} component={Orders} />
             <Route path={"/login"} component={Login} />
+            <Route path={"/auth/callback"} component={Repos} />
         </Route>
     </Router>), document.getElementById('root'));
