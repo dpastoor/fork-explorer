@@ -55,6 +55,7 @@
     "material-ui": "^0.13.4",
     "qs": "^6.0.1",
     "react": "^0.14.0",
+    "react-ace": "^2.8.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.1",
     "react-select": "^0.9.1",
