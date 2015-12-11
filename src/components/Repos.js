@@ -8,7 +8,7 @@ export default class Repos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            forks: "",
+            branches: "",
             file: ""
         }
     }
@@ -68,9 +68,9 @@ export default class Repos extends React.Component {
         });
     }
 
-    _fetchMisc (params) {
+    _fetchBranches (params) {
         xhr({
-            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/characterFrequency?ref=dpastoor',
+            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/branches',
             json: true,
             headers: {
                 Authorization: 'token ' + window.localStorage.token
@@ -81,8 +81,11 @@ export default class Repos extends React.Component {
             //console.log(req);
             //console.log('body');
             //console.log(body);
-            //console.log(window.atob(body.content))
             console.log(body)
+            let branches = body.map((x) => x.name)
+            this.setState({
+                branches: branches
+            });
         });
     }
 
@@ -93,13 +96,16 @@ export default class Repos extends React.Component {
                 <h1> Welcome! </h1>
                 <RaisedButton label="fetch user data" onClick={this._fetchUserData.bind(this)}/>
                 <RaisedButton label="fetch file data" onClick={this._fetchUserFile.bind(this)}/>
-                <RaisedButton label="fetch misc data" onClick={this._fetchMisc.bind(this)}/>
+                <RaisedButton label="fetch branches" onClick={this._fetchBranches.bind(this)}/>
                 <h1>code</h1>
                 <pre>
                     <code>
                         {this.state.file}
                     </code>
                 </pre>
+                <div>
+                    {this.state.branches}
+                </div>
             </div>
         )
     }
