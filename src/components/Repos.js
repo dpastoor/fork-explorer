@@ -46,7 +46,10 @@ export default class Repos extends React.Component {
 
     _fetchUserFile(params) {
         xhr({
-            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/primeTester/primeTester.js',
+            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/primeTester/primeTester.js?'+
+            qs.stringify({
+                ref: 'dpastoor'
+            }),
             json: true,
             headers: {
                 Authorization: 'token ' + window.localStorage.token
@@ -58,18 +61,39 @@ export default class Repos extends React.Component {
             //console.log('body');
             //console.log(body);
             //console.log(window.atob(body.content))
+            console.log(body)
             this.setState({
                 file: window.atob(body.content)
             })
         });
     }
+
+    _fetchMisc (params) {
+        xhr({
+            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/characterFrequency?ref=dpastoor',
+            json: true,
+            headers: {
+                Authorization: 'token ' + window.localStorage.token
+            }
+        }, (err, req, body) => {
+            console.log('data fetching successful');
+            //console.log('req');
+            //console.log(req);
+            //console.log('body');
+            //console.log(body);
+            //console.log(window.atob(body.content))
+            console.log(body)
+        });
+    }
+
     render() {
 
         return (
             <div>
                 <h1> Welcome! </h1>
-                <RaisedButton label="fetch user data" onClick={this._fetchUserData}/>
+                <RaisedButton label="fetch user data" onClick={this._fetchUserData.bind(this)}/>
                 <RaisedButton label="fetch file data" onClick={this._fetchUserFile.bind(this)}/>
+                <RaisedButton label="fetch misc data" onClick={this._fetchMisc.bind(this)}/>
                 <h1>code</h1>
                 <pre>
                     <code>
