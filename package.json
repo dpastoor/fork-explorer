@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.1",
+    "github-api": "^0.10.7",
     "history": "^1.13.1",
     "material-ui": "^0.13.4",
     "qs": "^6.0.1",

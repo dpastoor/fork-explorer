@@ -5,7 +5,13 @@ import qs from 'qs';
 import xhr from 'xhr';
 import {RaisedButton} from 'material-ui';
 export default class Repos extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            forks: "",
+            file: ""
+        }
+    }
     _authenticate() {
         const code = this.props.location.query.code;
         xhr({
@@ -31,12 +37,13 @@ export default class Repos extends React.Component {
             }
         }, (err, req, body) => {
             console.log('data fetching successful');
-            console.log('req')
-            console.log(req)
-            console.log('body')
+            console.log('req');
+            console.log(req);
+            console.log('body');
             console.log(body)
         });
     }
+
     _fetchUserFile(params) {
         xhr({
             url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/primeTester/primeTester.js',
@@ -46,10 +53,14 @@ export default class Repos extends React.Component {
             }
         }, (err, req, body) => {
             console.log('data fetching successful');
-            console.log('req')
-            console.log(req)
-            console.log('body')
-            console.log(body)
+            //console.log('req');
+            //console.log(req);
+            //console.log('body');
+            //console.log(body);
+            //console.log(window.atob(body.content))
+            this.setState({
+                file: window.atob(body.content)
+            })
         });
     }
     render() {
@@ -58,7 +69,13 @@ export default class Repos extends React.Component {
             <div>
                 <h1> Welcome! </h1>
                 <RaisedButton label="fetch user data" onClick={this._fetchUserData}/>
-                <RaisedButton label="fetch file data" onClick={this._fetchUserFile}/>
+                <RaisedButton label="fetch file data" onClick={this._fetchUserFile.bind(this)}/>
+                <h1>code</h1>
+                <pre>
+                    <code>
+                        {this.state.file}
+                    </code>
+                </pre>
             </div>
         )
     }
