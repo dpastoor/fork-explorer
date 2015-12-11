@@ -3,13 +3,16 @@ import React from 'react';
 import { render } from 'react-dom';
 import qs from 'qs';
 import xhr from 'xhr';
+import Select from 'react-select';
 import {RaisedButton} from 'material-ui';
+import _ from 'lodash';
 export default class Repos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             branches: "",
-            file: ""
+            file: "",
+            currentBranch: ""
         }
     }
     _authenticate() {
@@ -45,10 +48,11 @@ export default class Repos extends React.Component {
     }
 
     _fetchUserFile(params) {
+        let selectedBranch =  this.state.currentBranch === "" ? 'master' : this.state.currentBranch;
         xhr({
             url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/primeTester/primeTester.js?'+
             qs.stringify({
-                ref: 'dpastoor'
+                ref: selectedBranch
             }),
             json: true,
             headers: {
@@ -70,7 +74,7 @@ export default class Repos extends React.Component {
 
     _fetchBranches (params) {
         xhr({
-            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/branches',
+            url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/branches?page=1&per_page=100',
             json: true,
             headers: {
                 Authorization: 'token ' + window.localStorage.token
@@ -88,24 +92,35 @@ export default class Repos extends React.Component {
             });
         });
     }
-
+    _onSelectBranch (val) {
+        this.setState({
+            currentBranch: val
+        })
+    }
     render() {
-
+        let branchSelections = [{value: 'none', label: 'no branches'}]
+        if (this.state.branches !== "") {
+            branchSelections = _.map(this.state.branches, (d) => {
+                return { value: d, label: d}
+            })
+        }
         return (
             <div>
                 <h1> Welcome! </h1>
+                <div> Selected Branch: {this.state.currentBranch}</div>
                 <RaisedButton label="fetch user data" onClick={this._fetchUserData.bind(this)}/>
                 <RaisedButton label="fetch file data" onClick={this._fetchUserFile.bind(this)}/>
                 <RaisedButton label="fetch branches" onClick={this._fetchBranches.bind(this)}/>
+                <div>
+                    <Select name="some-branches"
+                            placeholder="pick a branch"
+                            options={branchSelections}
+                            onChange={this._onSelectBranch.bind(this) }/>
+                </div>
                 <h1>code</h1>
                 <pre>
-                    <code>
                         {this.state.file}
-                    </code>
                 </pre>
-                <div>
-                    {this.state.branches}
-                </div>
             </div>
         )
     }
