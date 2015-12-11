@@ -51,8 +51,10 @@
   "dependencies": {
     "classnames": "^2.2.1",
     "github-api": "^0.10.7",
-    "history": "^1.13.1",
+    "history": "^1.16.0",
+    "karma": "^0.13.15",
     "material-ui": "^0.13.4",
+    "phantomjs": "^1.9.19",
     "qs": "^6.0.1",
     "react": "^0.14.0",
     "react-ace": "^2.8.0",
