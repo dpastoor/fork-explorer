@@ -24,8 +24,6 @@ class Orders extends React.Component {
 render((
     <Router history={history}>
         <Route path={"/"} component={App}>
-            <Route path={"/products"} component={Products} />
-            <Route path={"/orders"} component={Orders} />
             <Route path={"/login"} component={Login} />
             <Route path={"/auth/callback"} component={Repos} />
         </Route>
