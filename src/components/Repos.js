@@ -84,7 +84,7 @@ export default class Repos extends React.Component {
             //console.log('body');
             //console.log(body);
             console.log(body)
-            let branches = body.map((x) => x.name)
+            let branches = body.map((x) => x.name);
             this.setState({
                 branches: branches
             });
@@ -109,7 +109,7 @@ export default class Repos extends React.Component {
                 <RaisedButton label="fetch user data" onClick={this._fetchUserData.bind(this)}/>
                 <RaisedButton label="fetch file data" onClick={this._fetchUserFile.bind(this)}/>
                 <RaisedButton label="fetch branches" onClick={this._fetchBranches.bind(this)}/>
-                <div>
+                <div className="section">
                     <Select name="some-branches"
                             placeholder="pick a branch"
                             options={branchSelections}
