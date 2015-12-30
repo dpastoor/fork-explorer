@@ -5,5 +5,5 @@ body {
   font: 100% $font-stack;
   color: $primary-color;
 }
-
+// for Select component styles as recommended in https://github.com/JedWatson/react-select/issues/602
 @import url('../node_modules/react-select/dist/react-select.css');
