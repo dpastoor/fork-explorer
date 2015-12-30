@@ -159,7 +159,6 @@ export default class Branches extends React.Component {
                   height="50em"
                   width="100em"
                   value={this.state.file}
-                  keyboardHandler="vim"
                 />
             </div>
         )
