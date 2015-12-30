@@ -64,12 +64,6 @@ export default class Repos extends React.Component {
             }
         }, (err, req, body) => {
             console.log('data fetching successful');
-            //console.log('req');
-            //console.log(req);
-            //console.log('body');
-            //console.log(body);
-            //console.log(window.atob(body.content))
-            console.log(body)
             this.setState({
                 file: window.atob(body.content)
             })
@@ -102,7 +96,7 @@ export default class Repos extends React.Component {
         })
     }
     render() {
-        let branchSelections = [{value: 'none', label: 'no branches'}]
+        let branchSelections = [{value: 'none', label: 'no branches'}];
         if (this.state.branches !== "") {
             branchSelections = _.map(this.state.branches, (d) => {
                 return { value: d, label: d}
