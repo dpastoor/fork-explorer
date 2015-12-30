@@ -6,7 +6,10 @@ import xhr from 'xhr';
 import Select from 'react-select';
 import {RaisedButton} from 'material-ui';
 import _ from 'lodash';
-const AceEditor = require('react-ace');
+import AceEditor from 'react-ace';
+import brace from 'brace';
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
 export default class Repos extends React.Component {
     constructor(props) {
         super(props);
@@ -119,9 +122,16 @@ export default class Repos extends React.Component {
                             onChange={this._onSelectBranch.bind(this) }/>
                 </div>
                 <h1>code</h1>
+                <pre><code className="language-javascript" >
+    {`
+function(test) {
+  return result;
+}
+    `}
+                </code></pre>
                 <AceEditor
                   mode="javascript"
-                  theme="github"
+                  theme="monokai"
                   name="ace"
                   height="50em"
                   width="100em"
