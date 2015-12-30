@@ -122,13 +122,6 @@ export default class Repos extends React.Component {
                             onChange={this._onSelectBranch.bind(this) }/>
                 </div>
                 <h1>code</h1>
-                <pre><code className="language-javascript" >
-    {`
-function(test) {
-  return result;
-}
-    `}
-                </code></pre>
                 <AceEditor
                   mode="javascript"
                   theme="monokai"
