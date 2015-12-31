@@ -1,9 +1,18 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
-
+html,body {
+  margin:0;
+  padding:0;
+  height:100%; /* needed for container min-height */
+}
 body {
   font: 100% $font-stack;
   color: $primary-color;
 }
+
+#root {
+  height: 100%; /* needed so can flexbox center the login button */
+}
+
 // for Select component styles as recommended in https://github.com/JedWatson/react-select/issues/602
 @import url('../node_modules/react-select/dist/react-select.css');

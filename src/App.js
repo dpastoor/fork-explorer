@@ -5,7 +5,7 @@ require('./main.scss');
 export default class App extends React.Component {
   render() {
     return (
-       <div>
+       <div style={{height: "100%"}}>
                {this.props.children}
        </div>
     );

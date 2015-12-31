@@ -6,8 +6,7 @@ export default class Login extends Component {
     constructor(props) {
         super(props);
     }
-    _onSubmit() {
-        console.log('going to new location')
+    onSubmit() {
         window.location='https://github.com/login/oauth/authorize?'+
             qs.stringify({
                 client_id:'feacb4f6529c9ed7ed6e',
@@ -17,9 +16,20 @@ export default class Login extends Component {
     }
   render() {
     return (
-       <div>
+       <div style={{
+        width: "100%",
+        height: "100%",
+        display: 'flex',
+        flex:1,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        margin: "auto"
+
+        }}
+       >
            <RaisedButton label="Login with Github"
-           onClick={this._onSubmit} />
+           onClick={this.onSubmit} />
        </div>
     );
   }
