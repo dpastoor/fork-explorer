@@ -77,6 +77,24 @@ export default class Branches extends React.Component {
         });
     }
 
+    fetchSolutionTests() {
+    let toyProblem =  this.state.currentToyProblem !== "" ? this.state.currentToyProblem : 'primeTester';
+    xhr({
+      url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/contents/' + toyProblem + '/' + toyProblem + '.tests.js?'+
+      qs.stringify({
+        ref: "solution"
+      }),
+      json: true,
+      headers: {
+        Authorization: 'token ' + window.localStorage.token
+      }
+    }, (err, req, body) => {
+      console.log('data fetching successful');
+      this.setState({
+        file: window.atob(body.content)
+      })
+    });
+  }
     fetchBranches (toyProblem) {
         xhr({
             url: 'https://api.github.com/repos/hackreactor/2015-11-toy-problems/branches?page=1&per_page=100',
