@@ -24,40 +24,36 @@ export default class Branches extends React.Component {
         }
     }
     _authenticate() {
-        const code = this.props.location.query.code;
-        xhr({
-            url: 'https://fork-explorer-lh.herokuapp.com/authenticate/' + code,
-            json: true
-        }, (err, req, body) => {
-            console.log('re-authentication successful');
-            window.localStorage.token = body.token;
-        });
+        window.location='https://github.com/login/oauth/authorize?'+
+          qs.stringify({
+            client_id:'feacb4f6529c9ed7ed6e',
+            redirect_uri: window.location.origin + '/auth/callback',
+            scope:'user,repo'
+          })
     }
     componentWillMount() {
-        if (!window.localStorage.token || window.localStorage.token === 'undefined') {
-            this._authenticate()
-        }
-    }
-
-    componentDidMount() {
+      if (!window.localStorage.token || window.localStorage.token === "undefined") {
+        this._authenticate()
+      } else {
         this.fetchToyProblems();
         this.fetchBranches();
+      }
     }
 
     fetchUserData(params) {
-        xhr({
-            url: 'https://api.github.com/user',
-            json: true,
-            headers: {
-               Authorization: 'token ' + window.localStorage.token
-            }
-        }, (err, req, body) => {
-            console.log('data fetching successful');
-            console.log('req');
-            console.log(req);
-            console.log('body');
-            console.log(body)
-        });
+      xhr({
+        url: 'https://api.github.com/user',
+        json: true,
+        headers: {
+           Authorization: 'token ' + window.localStorage.token
+        }
+      }, (err, req, body) => {
+        console.log('data fetching successful');
+        console.log('req');
+        console.log(req);
+        console.log('body');
+        console.log(body)
+      });
     }
 
     fetchUserFile(selectedBranch) {

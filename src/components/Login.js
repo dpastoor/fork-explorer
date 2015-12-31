@@ -7,6 +7,11 @@ export default class Login extends Component {
         super(props);
     }
     onSubmit() {
+      if (window.localStorage.token && window.localStorage.token !== "undefined") {
+        // already authenticated so just redirect to branches
+        window.location.href = window.location.origin + "/branches";
+        return;
+      }
         window.location='https://github.com/login/oauth/authorize?'+
             qs.stringify({
                 client_id:'feacb4f6529c9ed7ed6e',
