@@ -25,15 +25,23 @@ export default class Login extends Component {
         alignItems:'center',
         justifyContent:'center',
         margin: "auto"
-
         }}
        >
            <RaisedButton label="Login with Github"
-           onClick={this.onSubmit} />
+           onClick={this.onSubmit}
+          style={{
+             width: "30%"
+           }}
+           //labelStyle={{fontSize: "7vh", verticalAlign: "middle"}}
+           secondary="true"
+           />
        </div>
     );
   }
 }
 
 
+/*
 
+
+ */
