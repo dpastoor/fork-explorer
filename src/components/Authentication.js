@@ -12,20 +12,19 @@ import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
 export default class Authentication extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    _authenticate() {
-        const code = this.props.location.query.code;
-        xhr({
-            url: 'https://fork-explorer-lh.herokuapp.com/authenticate/' + code,
-            json: true
-        }, (err, req, body) => {
-            console.log('re-authentication successful');
-            window.localStorage.token = body.token;
-            console.log(window.location.origin);
-            window.location.href = window.location.origin + "/branches";
-        });
+  constructor(props) {
+    super(props);
+  }
+
+  _authenticate() {
+    const code = this.props.location.query.code;
+      xhr({
+        url: 'https://fork-explorer-lh.herokuapp.com/authenticate/' + code,
+        json: true
+      }, (err, req, body) => {
+        window.localStorage.token = body.token;
+        window.location.href = window.location.origin + "/branches";
+      });
     }
     componentWillMount() {
       this._authenticate()
